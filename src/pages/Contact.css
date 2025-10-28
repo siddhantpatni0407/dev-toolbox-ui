@@ -1,0 +1,248 @@
+.contact-page {
+  min-height: calc(100vh - 130px);
+  padding: 2rem 0;
+}
+
+.contact-hero {
+  text-align: center;
+  padding: 3rem 0;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: white;
+  margin-bottom: 3rem;
+  border-radius: 16px;
+}
+
+.contact-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.contact-subtitle {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.info-section {
+  text-align: center;
+}
+
+.info-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.info-section h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.info-section p {
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-method {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--color-surface);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-method:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.method-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.method-content h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 0.25rem;
+}
+
+.method-content p {
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.contact-form-container {
+  background: var(--color-surface);
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.form-header h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.form-header p {
+  color: var(--color-text-secondary);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  background: var(--color-background);
+  color: var(--color-text);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-actions {
+  margin: 2rem 0;
+}
+
+.submit-button {
+  width: 100%;
+}
+
+.form-note {
+  background: #f0f9ff;
+  border: 1px solid #0ea5e9;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.form-note p {
+  color: #0369a1;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Mobile responsive */
+@media (max-width: 968px) {
+  .contact-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-hero {
+    padding: 2rem 0;
+    margin: 0 1rem 3rem;
+  }
+
+  .contact-title {
+    font-size: 2.5rem;
+  }
+
+  .contact-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .contact-content {
+    padding: 0 1rem;
+    gap: 2rem;
+  }
+
+  .contact-form-container {
+    padding: 1.5rem;
+  }
+
+  .form-header h2 {
+    font-size: 1.75rem;
+  }
+
+  .contact-method {
+    padding: 1rem;
+  }
+
+  .method-icon {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-title {
+    font-size: 2rem;
+  }
+
+  .info-icon {
+    font-size: 2.5rem;
+  }
+
+  .info-section h3 {
+    font-size: 1.25rem;
+  }
+
+  .form-header h2 {
+    font-size: 1.5rem;
+  }
+}

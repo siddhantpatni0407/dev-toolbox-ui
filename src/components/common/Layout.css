@@ -1,0 +1,12 @@
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-background);
+}
+
+.main-content {
+  flex: 1;
+  padding: 90px 0 80px 0; /* Account for fixed navbar (90px) and fixed footer (80px) */
+  min-height: calc(100vh - 130px); /* Ensure content area accounts for both navbar and footer */
+}
