@@ -1,0 +1,706 @@
+/**
+ * World Clock Component Styles
+ * Modern, responsive styling for world clock with analog clock animations
+ */
+
+.world-clock {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.world-clock__header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.world-clock__header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+}
+
+.world-clock__header p {
+  color: var(--color-text-secondary, #666);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.world-clock__controls {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-end;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.timezone-selector {
+  flex: 1;
+  min-width: 300px;
+}
+
+.timezone-selector label {
+  display: block;
+  font-weight: 600;
+  color: var(--color-text-primary, #333);
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.selector-container {
+  position: relative;
+}
+
+.timezone-input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 2px solid var(--color-border, #e0e0e0);
+  border-radius: 12px;
+  font-size: 1rem;
+  background: var(--color-surface, #fff);
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.timezone-input:focus {
+  border-color: var(--color-primary, #667eea);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.timezone-input::placeholder {
+  color: var(--color-text-tertiary, #999);
+}
+
+.world-clock__settings {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+/* Dropdown Styles */
+.timezone-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--color-surface, #fff);
+  border: 1px solid var(--color-border, #e0e0e0);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  max-height: 500px;
+  overflow-y: auto;
+  z-index: 1000;
+  margin-top: 8px;
+  animation: dropdownSlideIn 0.25s ease-out;
+  backdrop-filter: blur(10px);
+}
+
+@keyframes dropdownSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.timezone-dropdown__section {
+  border-bottom: 1px solid var(--color-border-light, #f0f0f0);
+}
+
+.timezone-dropdown__section:last-child {
+  border-bottom: none;
+}
+
+.timezone-dropdown__section-title {
+  padding: 0.75rem 1rem 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-text-secondary, #666);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: var(--color-surface-secondary, #f8f9fa);
+  border-bottom: 1px solid var(--color-border-light, #f0f0f0);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.timezone-option {
+  padding: 1rem;
+  cursor: pointer;
+  border-bottom: 1px solid var(--color-border-light, #f0f0f0);
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.timezone-option:last-child {
+  border-bottom: none;
+}
+
+.timezone-option::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(102, 126, 234, 0.1), 
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.timezone-option:hover::before {
+  left: 100%;
+}
+
+.timezone-option:hover {
+  background: linear-gradient(135deg, 
+    rgba(102, 126, 234, 0.05) 0%, 
+    rgba(118, 75, 162, 0.05) 100%
+  );
+  transform: translateX(4px);
+  border-left: 3px solid var(--color-primary, #667eea);
+  padding-left: calc(1rem - 3px);
+}
+
+.timezone-option--suggested {
+  background: linear-gradient(135deg, 
+    rgba(255, 193, 7, 0.05) 0%, 
+    rgba(255, 152, 0, 0.05) 100%
+  );
+}
+
+.timezone-option__main {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.timezone-abbreviation {
+  background: linear-gradient(135deg, var(--color-primary, #667eea) 0%, #764ba2 100%);
+  color: white;
+  padding: 0.375rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  min-width: 4rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  transition: all 0.2s ease;
+}
+
+.timezone-option:hover .timezone-abbreviation {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.timezone-name {
+  font-weight: 600;
+  color: var(--color-text-primary, #333);
+  flex: 1;
+}
+
+.timezone-flag {
+  font-size: 1.3rem;
+  margin-left: auto;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+.timezone-option__details {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary, #666);
+  margin-left: 5rem;
+  flex-wrap: wrap;
+}
+
+.timezone-offset {
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  background: var(--color-surface-secondary, #f8f9fa);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  border: 1px solid var(--color-border-light, #f0f0f0);
+  transition: all 0.2s ease;
+}
+
+.timezone-option:hover .timezone-offset {
+  background: white;
+  border-color: var(--color-primary, #667eea);
+  color: var(--color-primary, #667eea);
+}
+
+.timezone-cities {
+  color: var(--color-text-tertiary, #888);
+  font-size: 0.8rem;
+}
+
+.timezone-region {
+  background: var(--color-surface-tertiary, #e8f4f8);
+  color: var(--color-primary, #667eea);
+  padding: 0.125rem 0.375rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.timezone-reason {
+  color: var(--color-success, #28a745);
+  font-style: italic;
+  font-size: 0.75rem;
+}
+
+.timezone-dropdown__no-results {
+  padding: 2rem;
+  text-align: center;
+  color: var(--color-text-secondary, #666);
+  font-style: italic;
+}
+
+.timezone-dropdown__no-results::before {
+  content: '🔍';
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.5;
+}
+
+/* World Clock Display */
+.world-clock__display {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.clock-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.clock-info__header h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-text-primary, #333);
+  margin: 0 0 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.clock-info__flag {
+  font-size: 2rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.clock-info__meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.clock-info__country {
+  color: var(--color-text-secondary, #666);
+  font-weight: 500;
+}
+
+.clock-info__abbreviation {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.clock-info__dst {
+  background: #ff9500;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.clock-info__time {
+  text-align: left;
+}
+
+.digital-time {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.digital-time__value {
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--color-text-primary, #333);
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  letter-spacing: -0.05em;
+}
+
+.digital-time__offset {
+  font-size: 1.2rem;
+  color: var(--color-text-secondary, #666);
+  font-weight: 500;
+  background: var(--color-surface-secondary, #f8f9fa);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border-light, #f0f0f0);
+}
+
+.digital-date {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary, #666);
+  font-weight: 500;
+}
+
+.clock-info__details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.detail-item {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: var(--color-text-secondary, #666);
+  min-width: 100px;
+  font-size: 0.9rem;
+}
+
+.detail-value {
+  color: var(--color-text-primary, #333);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.detail-item--current .detail-value {
+  color: var(--color-success, #28a745);
+  font-weight: 600;
+}
+
+/* Analog Clock */
+.analog-clock-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.analog-clock {
+  position: relative;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.15),
+    inset 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 10px;
+}
+
+.analog-clock--dark {
+  background: #2d3748;
+}
+
+.analog-clock__svg {
+  display: block;
+}
+
+.analog-clock__face {
+  fill: white;
+  stroke: #e2e8f0;
+  stroke-width: 2;
+}
+
+.analog-clock--dark .analog-clock__face {
+  fill: #2d3748;
+  stroke: #4a5568;
+}
+
+.analog-clock__hour-tick {
+  stroke: #4a5568;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.analog-clock__minute-tick {
+  stroke: #a0aec0;
+  stroke-width: 1;
+  stroke-linecap: round;
+}
+
+.analog-clock__number {
+  fill: #2d3748;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.analog-clock--dark .analog-clock__number {
+  fill: #e2e8f0;
+}
+
+.analog-clock__hour-hand {
+  stroke: #2d3748;
+  stroke-width: 6;
+  stroke-linecap: round;
+  transition: transform 1s ease-in-out;
+}
+
+.analog-clock__minute-hand {
+  stroke: #4a5568;
+  stroke-width: 4;
+  stroke-linecap: round;
+  transition: transform 1s ease-in-out;
+}
+
+.analog-clock__second-hand {
+  stroke: #e53e3e;
+  stroke-width: 2;
+  stroke-linecap: round;
+  transition: transform 0.1s ease-in-out;
+}
+
+.analog-clock__center {
+  fill: #2d3748;
+}
+
+.analog-clock--dark .analog-clock__center {
+  fill: #e2e8f0;
+}
+
+.analog-clock__label {
+  text-align: center;
+}
+
+.analog-clock__time {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-primary, #333);
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+}
+
+.analog-clock__timezone {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary, #666);
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+
+/* Empty State */
+.world-clock__empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  padding: 2rem;
+}
+
+.empty-state {
+  text-align: center;
+  max-width: 500px;
+}
+
+.empty-state__icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.7;
+}
+
+.empty-state h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-primary, #333);
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+  color: var(--color-text-secondary, #666);
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.empty-state__suggestions h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-primary, #333);
+  margin-bottom: 1rem;
+}
+
+.timezone-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.timezone-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: white;
+  border: 2px solid var(--color-border, #e0e0e0);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.timezone-chip:hover {
+  border-color: var(--color-primary, #667eea);
+  background: var(--color-primary, #667eea);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.timezone-chip__flag {
+  font-size: 1.2rem;
+}
+
+.timezone-chip__name {
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .world-clock {
+    padding: 1rem;
+  }
+
+  .world-clock__header h1 {
+    font-size: 2rem;
+  }
+
+  .world-clock__controls {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .world-clock__settings {
+    justify-content: center;
+  }
+
+  .world-clock__display {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1.5rem;
+  }
+
+  .analog-clock-container {
+    order: -1;
+  }
+
+  .digital-time {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .digital-time__value {
+    font-size: 2.5rem;
+  }
+
+  .clock-info__meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .timezone-option__details {
+    margin-left: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .timezone-chips {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .timezone-chip {
+    width: 100%;
+    max-width: 200px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .world-clock__header h1 {
+    font-size: 1.75rem;
+  }
+
+  .timezone-selector {
+    min-width: unset;
+  }
+
+  .digital-time__value {
+    font-size: 2rem;
+  }
+
+  .detail-item {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .detail-label {
+    min-width: unset;
+  }
+}
+
+/* Smooth scrollbar for dropdown */
+.timezone-dropdown::-webkit-scrollbar {
+  width: 8px;
+}
+
+.timezone-dropdown::-webkit-scrollbar-track {
+  background: var(--color-surface-secondary, #f8f9fa);
+  border-radius: 4px;
+}
+
+.timezone-dropdown::-webkit-scrollbar-thumb {
+  background: var(--color-border, #e0e0e0);
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.timezone-dropdown::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary, #667eea);
+}

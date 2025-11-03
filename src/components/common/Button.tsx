@@ -3,8 +3,8 @@ import { ButtonVariant, InputSize } from '../../enums';
 import './Button.css';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: ButtonVariant;
-  size?: InputSize;
+  variant?: ButtonVariant | string;
+  size?: InputSize | string;
   loading?: boolean;
   icon?: React.ReactNode;
   children: React.ReactNode;
@@ -13,6 +13,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   href?: string;
   target?: string;
   rel?: string;
+  fullWidth?: boolean;
   [key: string]: any;
 }
 
@@ -24,31 +25,44 @@ const Button = React.memo(forwardRef<HTMLButtonElement, ButtonProps>(({
   children,
   className = '',
   disabled,
+  fullWidth = false,
   as: Component = 'button',
   ...props
 }, ref) => {
   const classes = [
     'btn',
-    `btn-${variant}`,
-    `btn-${size}`,
-    loading && 'btn-loading',
-    disabled && 'btn-disabled',
+    `btn--${variant}`,
+    `btn--${size}`,
+    loading && 'btn--loading',
+    disabled && 'btn--disabled',
+    fullWidth && 'btn--full-width',
     className
   ].filter(Boolean).join(' ');
+
+  const hasIconOnly = icon && !children;
+  const hasIconAndText = icon && children;
 
   return (
     <Component
       ref={ref}
       className={classes}
       disabled={disabled || loading}
+      aria-disabled={disabled || loading}
       {...props}
     >
-      {loading ? (
-        <span className="btn-spinner" />
-      ) : icon ? (
-        <span className="btn-icon">{icon}</span>
-      ) : null}
-      <span className="btn-text">{children}</span>
+      {loading && (
+        <span className="btn__spinner" aria-hidden="true" />
+      )}
+      {icon && !loading && (
+        <span className={`btn__icon ${hasIconOnly ? 'btn__icon--only' : ''}`} aria-hidden="true">
+          {icon}
+        </span>
+      )}
+      {children && (
+        <span className={`btn__text ${hasIconAndText ? 'btn__text--with-icon' : ''}`}>
+          {children}
+        </span>
+      )}
     </Component>
   );
 }));

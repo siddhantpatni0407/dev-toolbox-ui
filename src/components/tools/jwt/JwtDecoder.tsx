@@ -3,6 +3,7 @@ import { parseJWT, validateJWT, getClaimsSummary } from '../../../utils/jwtUtils
 import { DecodedJWT, JWTValidationResult } from '../../../models/jwt';
 import { ButtonVariant } from '../../../enums';
 import Button from '../../common/Button';
+import ToolHeader from '../../common/ToolHeader';
 import JsonDisplay from './JsonDisplay';
 import JwtValidation from './JwtValidation';
 import { DEBOUNCE_DELAY } from '../../../constants';
@@ -108,12 +109,10 @@ const JwtDecoder: React.FC = () => {
 
   return (
     <main className="jwt-decoder" role="main" aria-labelledby="jwt-decoder-title">
-      <header className="jwt-header">
-        <h1 id="jwt-decoder-title">JWT Token Decoder & Validator</h1>
-        <p className="jwt-description">
-          Decode, validate, and analyze JSON Web Tokens with comprehensive security checks
-        </p>
-      </header>
+      <ToolHeader
+        title="JWT Token Decoder & Validator"
+        description="Decode, validate, and analyze JSON Web Tokens with comprehensive security checks"
+      />
 
       <div className="jwt-content">
         <section className="jwt-input-section" aria-labelledby="input-section-title">

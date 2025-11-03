@@ -171,6 +171,23 @@
   width: 100%;
 }
 
+/* Fix submit button text visibility */
+.submit-button.btn-primary,
+.form-actions .btn.btn-primary {
+  color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+.submit-button.btn-primary .btn-text,
+.submit-button.btn-primary span,
+.submit-button.btn-primary *:not(.btn-icon):not(.btn-spinner),
+.form-actions .btn.btn-primary .btn-text,
+.form-actions .btn.btn-primary span,
+.form-actions .btn.btn-primary *:not(.btn-icon):not(.btn-spinner) {
+  color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
 .form-note {
   background: #f0f9ff;
   border: 1px solid #0ea5e9;

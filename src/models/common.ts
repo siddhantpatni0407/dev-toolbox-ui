@@ -31,4 +31,4 @@ export interface ThemeConfig {
   textSecondary: string;
 }
 
-export type ToolCategory = 'security' | 'generator' | 'encoder' | 'validator' | 'formatter';
+export type ToolCategory = 'security' | 'generator' | 'utility' | 'encoder' | 'validator' | 'formatter' | 'viewer' | 'comparator' | 'converter';

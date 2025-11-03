@@ -8,6 +8,7 @@ import { PasswordOptions, GeneratedPassword } from '../../../models/password';
 import { ButtonVariant, InputSize } from '../../../enums';
 import { PASSWORD_DEFAULTS } from '../../../constants';
 import Button from '../../common/Button';
+import ToolHeader from '../../common/ToolHeader';
 import './PasswordGenerator.css';
 
 /**
@@ -66,10 +67,10 @@ const PasswordGenerator: React.FC = () => {
 
   return (
     <div className="password-generator">
-      <div className="password-header">
-        <h1>Secure Password Generator</h1>
-        <p>Generate strong, random passwords with customizable options</p>
-      </div>
+      <ToolHeader
+        title="Secure Password Generator"
+        description="Generate strong, random passwords with customizable options"
+      />
 
       <div className="password-content">
         <div className="generator-section">

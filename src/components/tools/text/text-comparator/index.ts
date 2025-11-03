@@ -1,0 +1,1 @@
+export { TextComparator } from './TextComparator';
